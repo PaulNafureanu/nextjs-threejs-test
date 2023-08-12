@@ -1,8 +1,10 @@
 import * as Three from "three";
-import * as Dat from "dat.gui";
+// import * as Dat from "dat.gui";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-export default function InitThreeJS() {
+export default async function InitThreeJS() {
+  const Dat = await import("dat.gui");
+
   console.log("Init Three JS");
 
   const renderer = new Three.WebGLRenderer();
