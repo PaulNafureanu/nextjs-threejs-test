@@ -19,7 +19,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",
     "paths": {
+      // Other paths you might have
+      "three/examples/jsm/controls/OrbitControls": [
+        "node_modules/three/examples/jsm/controls/OrbitControls"
+      ],
       "@/*": ["./*"]
     }
   },
