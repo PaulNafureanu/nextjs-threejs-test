@@ -30,16 +30,26 @@ export default async function InitThreeJS() {
   const orbit = new OrbitControls(camera, renderer.domElement);
   orbit.update();
 
-  const ambientLight = new Three.AmbientLight(0x333);
+  const ambientLight = new Three.AmbientLight(0xffffff, 0.1);
   scene.add(ambientLight);
 
-  const directionalLight = new Three.DirectionalLight(0xfff, 0.8);
-  scene.add(directionalLight);
+  // const directionalLight = new Three.DirectionalLight(0xfff, 0.8);
+  // scene.add(directionalLight);
 
-  directionalLight.position.set(-30, 30, 0);
-  directionalLight.castShadow = true;
-  directionalLight.shadow.camera.bottom = -12;
-  directionalLight.shadow.camera.top = 12;
+  // directionalLight.position.set(-30, 30, 0);
+  // directionalLight.castShadow = true;
+  // directionalLight.shadow.camera.bottom = -12;
+  // directionalLight.shadow.camera.top = 12;
+
+  const spotLight = new Three.SpotLight(0xffffff, 1000);
+  scene.add(spotLight);
+
+  spotLight.castShadow = true;
+  spotLight.position.set(-30, 30, 0);
+  spotLight.angle = 0.25;
+
+  const sLightHelper = new Three.SpotLightHelper(spotLight);
+  scene.add(sLightHelper);
 
   const axesHelper = new Three.AxesHelper(5);
   scene.add(axesHelper);
@@ -47,13 +57,13 @@ export default async function InitThreeJS() {
   const gridHelper = new Three.GridHelper(30);
   scene.add(gridHelper);
 
-  const dLightHelper = new Three.DirectionalLightHelper(directionalLight, 5);
-  scene.add(dLightHelper);
+  // const dLightHelper = new Three.DirectionalLightHelper(directionalLight, 5);
+  // scene.add(dLightHelper);
 
-  const dLightShadowHelper = new Three.CameraHelper(
-    directionalLight.shadow.camera
-  );
-  scene.add(dLightShadowHelper);
+  // const dLightShadowHelper = new Three.CameraHelper(
+  //   directionalLight.shadow.camera
+  // );
+  // scene.add(dLightShadowHelper);
 
   const planeGeometry = new Three.PlaneGeometry(30, 30);
   const planeMaterial = new Three.MeshStandardMaterial({
@@ -74,7 +84,7 @@ export default async function InitThreeJS() {
   const sphereRadius = 4;
   const sphereGeometry = new Three.SphereGeometry(sphereRadius);
   const sphereMaterial = new Three.MeshStandardMaterial({
-    color: 0x0000ff,
+    color: 0xeeff40,
     wireframe: false,
   });
   const sphere = new Three.Mesh(sphereGeometry, sphereMaterial);
