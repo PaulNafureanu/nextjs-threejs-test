@@ -18,14 +18,18 @@ export default async function init() {
   const uranusTexture = "/img/uranus.jpg";
   const venusTexture = "/img/venus.jpg";
 
+  const pixelRatio = window.devicePixelRatio || 1;
+  const canvasWidth = window.innerWidth * pixelRatio;
+  const canvasHeight = window.innerHeight * pixelRatio;
+
   const renderer = new Three.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(canvasWidth, canvasHeight);
   document.body.appendChild(renderer.domElement);
 
   const scene = new Three.Scene();
   const camera = new Three.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
+    canvasWidth / canvasHeight,
     0.1,
     10000
   );
@@ -192,8 +196,8 @@ export default async function init() {
   });
 
   window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = canvasWidth / canvasHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(canvasWidth, canvasHeight);
   });
 }
