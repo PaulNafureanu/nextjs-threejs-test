@@ -18,7 +18,7 @@ export default async function init() {
   const uranusTexture = "/img/uranus.jpg";
   const venusTexture = "/img/venus.jpg";
 
-  const renderer = new Three.WebGLRenderer();
+  const renderer = new Three.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
