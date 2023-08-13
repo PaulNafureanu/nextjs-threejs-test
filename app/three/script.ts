@@ -24,10 +24,10 @@ export default async function init() {
 
   const scene = new Three.Scene();
   const camera = new Three.PerspectiveCamera(
-    45,
+    75,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    10000
   );
 
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -83,7 +83,7 @@ export default async function init() {
     const circleMat = new Three.LineBasicMaterial({
       color: 0xffffff,
       transparent: true,
-      opacity: 0.1,
+      opacity: 0.2,
     });
     const circle = new Three.LineLoop(circleGeo, circleMat);
     circle.rotation.x = -0.5 * Math.PI;
